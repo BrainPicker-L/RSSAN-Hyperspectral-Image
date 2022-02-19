@@ -1,3 +1,8 @@
 .idea
 Dataset
 train.log
+function/__pycache__
+model/__pycache__
+result/IN/*
+result/KSC/*
+result/PU/*
