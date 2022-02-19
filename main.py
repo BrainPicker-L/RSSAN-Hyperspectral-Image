@@ -13,7 +13,7 @@ from torchsummary import summary
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='RSSAN Training')
-    parser.add_argument('--epochs', default=200, type=int, help='number of total epochs to run')
+    parser.add_argument('--epochs', default=20, type=int, help='number of total epochs to run')
     parser.add_argument('--lr', default=0.0003, type=float, help='IP, PU: 0.0003, KSC: 0.0001')
     parser.add_argument('--path', default='./Dataset/', type=str, help='dataset location')
     parser.add_argument('--result', default='./result/', type=str, help='model and figure')
@@ -62,8 +62,10 @@ if __name__ == '__main__':
         model = RSSAN.RSSAN4(kinds, bands, 3, args.depth, 1, 1, args.patchsize)
     elif args.ab_study == 'RSSAN-SA-SE':
         model = RSSAN.RSSAN5(kinds, bands, 3, args.depth, 1, 1, args.patchsize)
-
-    model = model.cuda()
+    if use_cuda:
+        model = model.cuda()
+    else:
+        model = model.cpu()
     summary(model, datashape, args.train_size)
     # for name, parameters in model.named_parameters():
     #     print(name, ':', parameters.size())

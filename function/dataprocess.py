@@ -5,7 +5,7 @@ import scipy.io as sio
 from sklearn.model_selection import train_test_split
 import numpy as np
 import torch
-from HSI_torch import CommonDataset
+from function.HSI_torch import CommonDataset
 
 def normalize(data):
     """
